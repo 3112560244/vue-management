@@ -20,10 +20,13 @@
                 <p class="login-tips">Tips : 用户名和密码随便填。</p>
             </el-form>
         </div>
+        <el-button @click="test">test</el-button>
     </div>
 </template>
 
 <script>
+    import httpServer from "@/util/Axios";
+
     export default {
         data: function () {
             return {
@@ -42,9 +45,24 @@
             }
         },
         methods: {
+            test() {
+                console.log('test');
+
+                httpServer({
+                    url: '/v1/user/login',
+                    method: 'post',
+                    data: {
+                        "userName":"test1",
+                        "password":"test"
+                    }
+                }).then(res => {
+                    console.log(res);
+                })
+            },
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
+
                         localStorage.setItem('ms_username', this.ruleForm.username);
                         this.$router.push('/');
                     } else {

@@ -13,6 +13,14 @@ module.exports = {
             '/ms':{
                 target: 'https://www.easy-mock.com/mock/592501a391470c0ac1fab128',
                 changeOrigin: true
+            },
+            '/v1':{
+                target: 'http://localhost:8082',
+                changeOrigin: true,
+                //重写路径
+                pathRewrite:{
+                    '/v1':''
+                }
             }
         }
     }
